@@ -9,6 +9,7 @@ public interface IDoctor {
 	List<Doctor> getAllAvailableDoctors();
 	List<Doctor> getAllUnAvailableDoctors();
 	boolean searchDoctor(int doctorId);
+	Doctor DoctorByDoctorId(int doctorId);
 	
 	
 }

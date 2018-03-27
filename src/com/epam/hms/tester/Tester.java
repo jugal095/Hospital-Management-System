@@ -43,7 +43,7 @@ public class Tester {
 				System.out.println("|________________________________________|");
 				System.out.println("| 1.  Register Doctor                    |");
 				System.out.println("| 2.  Update Doctor                      |");
-				System.out.println("| 3.  Register Patient                   |");
+				System.out.println("| 3.  Admit Patient                      |");
 				System.out.println("| 4.  Discharge Patient                  |");
 				System.out.println("| 5.  Show All Doctors                   |");
 				System.out.println("| 6.  Show All Patients                  |");
@@ -51,6 +51,7 @@ public class Tester {
 				System.out.println("| 8.  Show All Unavailable Doctors       |");
 				System.out.println("| 9.  Show All Admitted Patients         |");
 				System.out.println("| 10. Show All Discharge Patients        |");
+				System.out.println("| 11. Doctor Appointment                 |");
 				System.out.println("| 0.  Exit                               |");
 				System.out.println("|________________________________________|");
 				System.out.println("| Please Select Your Choice              |");
@@ -110,9 +111,11 @@ public class Tester {
 							 String patientDisease=sc.next();
 							 System.out.println("Enter Room Number : ");
 							 int roomNumber=sc.nextInt();
+							 System.out.println("Enter Doctor ID: ");
+							 doctorId=sc.nextInt();
 							 
-							 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), null, "Admit",roomNumber)));
-							 doctorCount++; 
+							 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), null, "Admit",roomNumber,doctorId)));
+							 patientCount++;
 						}
 						catch(Exception e)
 						{
@@ -202,7 +205,31 @@ public class Tester {
 						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						break;
 					
-					
+					case 11:
+						try
+						{
+							System.out.println("Enter Patient's Name : ");
+							 String patientName=sc.next();
+							 System.out.println("Enter Patient's age : ");
+							 int patientAge=sc.nextInt();
+							 System.out.println("Enter Patient's Gender : ");
+							 String patientGender=sc.next();
+							 System.out.println("Enter Patient Disease : ");
+							 String patientDisease=sc.next();
+							 System.out.println("Enter Room Number : ");
+							 int roomNumber=sc.nextInt();
+							 System.out.println("Enter Doctor ID: ");
+							 doctorId=sc.nextInt();
+							 
+							 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), new Date(), "Appointment",roomNumber,doctorId)));
+							 patientCount++;
+						}
+						catch(Exception e)
+						{
+							System.out.println("Enter Valid Information!!!!");
+						}
+	
+						break;
 					
 					case 0:
 						exit=true;

@@ -152,6 +152,18 @@ public class Hospital implements IDoctor,IPatient {
 		}
 		return false;
 	}
+
+	@Override
+	public Doctor DoctorByDoctorId(int doctorId) {
+		for(Doctor d:doctorsList)
+		{
+			if(d.getDoctorId()==doctorId)
+			{
+				return d;
+			}
+		}
+		return null;
+	}
 	
 	
 }

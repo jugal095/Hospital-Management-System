@@ -3,6 +3,8 @@ package com.epam.hms.patient;
 
 import java.util.Date;
 
+import com.epam.hms.hospital.Hospital;
+
 public class Patient {
 		
 	private int patientId;
@@ -14,11 +16,12 @@ public class Patient {
 	private Date dischargeDate;
 	private String status;
 	private int roomNumber;
+	private int doctorId;
 	
 	
 	
 	public Patient(int patientId, String patientName, String disease, String gender, int age, Date admitDate,
-			Date dischargeDate, String status,int roomNumber) {
+			Date dischargeDate, String status,int roomNumber,int doctorId) {
 		super();
 		this.patientId = patientId;
 		this.patientName = patientName;
@@ -29,6 +32,7 @@ public class Patient {
 		this.dischargeDate = dischargeDate;
 		this.status = status;
 		this.roomNumber=roomNumber;
+		this.doctorId=doctorId;
 	}
 	public int getPatientId() {
 		return patientId;
@@ -85,9 +89,15 @@ public class Patient {
 	public void setRoomNumber(int roomNumber) {
 		this.roomNumber = roomNumber;
 	}
+	public int getDoctorId() {
+		return doctorId;
+	}
+	public void setDoctorId(int doctorId) {
+		this.doctorId = doctorId;
+	}
 	@Override
 	public String toString() {   
-		return patientId + "             " + patientName + "                 " + disease + "         "+ gender + "    " + age + "          "+ status+"        "+admitDate+"         "+dischargeDate+"                "+roomNumber;
+		return patientId + "             " + patientName + "                 " + disease + "         "+ gender + "    " + age + "          "+ status+"        "+admitDate+"         "+dischargeDate+"                "+roomNumber+"        "+new Hospital().DoctorByDoctorId(doctorId);
 	}
 	
 }
