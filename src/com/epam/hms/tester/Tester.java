@@ -52,6 +52,7 @@ public class Tester {
 				System.out.println("| 9.  Show All Admitted Patients         |");
 				System.out.println("| 10. Show All Discharge Patients        |");
 				System.out.println("| 11. Doctor Appointment                 |");
+				System.out.println("| 12. Patient Details By Patient Id      |");
 				System.out.println("| 0.  Exit                               |");
 				System.out.println("|________________________________________|");
 				System.out.println("| Please Select Your Choice              |");
@@ -113,9 +114,19 @@ public class Tester {
 							 int roomNumber=sc.nextInt();
 							 System.out.println("Enter Doctor ID: ");
 							 doctorId=sc.nextInt();
-							 
-							 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), null, "Admit",roomNumber,doctorId)));
-							 patientCount++;
+							 if(h.searchDoctor(doctorId))
+							 {
+								 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), null, "Admit",roomNumber,doctorId)));
+								 patientCount++;
+							 }
+							 else
+							 {
+								 throw new DoctorDoesNotExistException("Invalid Doctor Id !!!!");
+							 }
+						}
+						catch(DoctorDoesNotExistException e)
+						{
+							System.out.println(e.getMessage());
 						}
 						catch(Exception e)
 						{
@@ -158,13 +169,14 @@ public class Tester {
 					
 					case 6:
 						plist= h.getPatientsList();
-						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number");
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number         Doctor ID");
+						System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						for(Patient p1:plist)
 						{
 							System.out.println(p1.toString());
+							System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						}
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+						
 						break;
 						
 					case 7:
@@ -185,24 +197,26 @@ public class Tester {
 						
 					case 9:
 						plist= h.getAllAdmittedPatients();
-						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number");
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number         Doctor ID");
+						System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						for(Patient p1:plist)
 						{
 							System.out.println(p1.toString());
+							System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						}
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+						
 						break;
 						
 					case 10:
 						plist= h.getAllDischargePatients();
-						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number");
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
-						for(Patient p1:plist)
+
+						System.out.println("Patient Id        Patient Name          Disease    Gender     Age        Status         Admit Date                             Discharge Date                    Room Number         Doctor ID");
+						System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");for(Patient p1:plist)
 						{
 							System.out.println(p1.toString());
+							System.out.println("----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
 						}
-						System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
+						
 						break;
 					
 					case 11:
@@ -220,17 +234,38 @@ public class Tester {
 							 int roomNumber=sc.nextInt();
 							 System.out.println("Enter Doctor ID: ");
 							 doctorId=sc.nextInt();
-							 
-							 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), new Date(), "Appointment",roomNumber,doctorId)));
-							 patientCount++;
+							 if(h.searchDoctor(doctorId))
+							 {
+								 System.out.println("Patient registed with Patient ID "+h.addPatient(new Patient(patientCount, patientName, patientDisease, patientGender, patientAge, new Date(), new Date(), "Appointment",roomNumber,doctorId)));
+								 patientCount++;
+							 }
+							 else
+							 {
+								 throw new DoctorDoesNotExistException("Invalid Doctor Id !!!!");
+							 }
+						}
+						catch(DoctorDoesNotExistException e)
+						{
+							System.out.println(e.getMessage());
 						}
 						catch(Exception e)
 						{
-							System.out.println("Enter Valid Information!!!!");
+							System.err.println("Enter Valid Information!!!!");
 						}
 	
 						break;
-					
+					case 12:
+						try
+						{
+						System.out.println("Enter Patient Id :");
+						patientId=sc.nextInt();
+						h.patientDetails(patientId);
+						}
+						catch(PatientDoesNotExists e)
+						{
+							System.err.println(e.getMessage());
+						}
+						break;
 					case 0:
 						exit=true;
 						System.out.println("*****GOOD BYE!!!!!*****");

@@ -9,5 +9,6 @@ public interface IPatient {
 	List<Patient> getPatientsList();
 	List<Patient> getAllAdmittedPatients();
 	List<Patient> getAllDischargePatients();
+	void patientDetails(int patientId) throws Exception;
 	
 }

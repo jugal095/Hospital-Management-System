@@ -1,10 +1,12 @@
 package com.epam.hms.hospital;
 
+import java.text.ParseException;
 import java.util.*;
 
 
 import com.epam.hms.doctor.Doctor;
 import com.epam.hms.doctor.IDoctor;
+import com.epam.hms.exceptions.PatientDoesNotExists;
 import com.epam.hms.patient.IPatient;
 import com.epam.hms.patient.Patient;
 
@@ -163,6 +165,42 @@ public class Hospital implements IDoctor,IPatient {
 			}
 		}
 		return null;
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public void patientDetails(int patientId) throws PatientDoesNotExists {
+		Patient p1=null;
+		Doctor d=null;
+		for(Patient p:patientsList)
+		{
+			if(p.getPatientId()==patientId);
+			{
+				p1=p;
+				break;
+			}
+		}
+		d=DoctorByDoctorId(p1.getDoctorId());
+		
+		if(p1!=null)
+		{
+			System.out.println("Patient Id - "+p1.getPatientId());
+			System.out.println("Patient Name - "+p1.getPatientName());
+			System.out.println("Age - "+p1.getAge());
+			System.out.println("Gender - "+p1.getGender());
+			System.out.println("Disease - "+p1.getDisease());
+			System.out.println("Status - "+p1.getStatus());
+			System.out.println("Admit Date - "+p1.getAdmitDate());
+			System.out.println("Discharge Date- "+p1.getDischargeDate());
+			System.out.println("Doctor Id - "+d.getDoctorId());
+			System.out.println("Doctor Name - "+d.getDoctorName());
+			System.out.println("Doctor Speciality - "+d.getDoctorSpeciality());
+		}
+		else
+		{
+			throw new PatientDoesNotExists("Invalid Patient Id !!!!");
+		}
+		
 	}
 	
 	

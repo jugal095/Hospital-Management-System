@@ -97,7 +97,7 @@ public class Patient {
 	}
 	@Override
 	public String toString() {   
-		return patientId + "             " + patientName + "                 " + disease + "         "+ gender + "    " + age + "          "+ status+"        "+admitDate+"         "+dischargeDate+"                "+roomNumber+"        "+new Hospital().DoctorByDoctorId(doctorId);
+		return patientId + "             " + patientName + "                 " + disease + "         "+ gender + "    " + age + "          "+ status+"        "+admitDate+"         "+dischargeDate+"                "+roomNumber+"       "+doctorId;
 	}
 	
 }
